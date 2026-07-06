@@ -9,10 +9,10 @@
     "directory": "package/auditcrowd/auditcrowd/"
   },
   "scripts": {
-    "dev": "cp ./next.config.default.ts ./next.config.ts && next dev",
-    "build:dev": "cp ./next.config.dev.ts ./next.config.ts &&n ext build",
-    "build:qa": "cp ./next.config.qa.ts ./next.config.ts && next build",
-    "build:prod": "cp ./next.config.prod.ts ./next.config.ts && next build",
+    "dev": "node -e \"require('fs').copyFileSync('next.config.default.ts','next.config.ts')\" && next dev",
+    "build:dev": "node -e \"require('fs').copyFileSync('next.config.dev.ts','next.config.ts')\" && next build",
+    "build:qa": "node -e \"require('fs').copyFileSync('next.config.qa.ts','next.config.ts')\" && next build",
+    "build:prod": "node -e \"require('fs').copyFileSync('next.config.prod.ts','next.config.ts')\" && next build",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
