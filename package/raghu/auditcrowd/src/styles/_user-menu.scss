@@ -1,0 +1,282 @@
+// User dropdown — the account hub, matching the portal toolbar user menu.
+// Trigger (name + org + avatar) toggles a panel with user info, org switcher,
+// Create API Key, theme switch, and Sign Out.
+
+.user-menu {
+  position: relative;
+}
+
+.user-menu-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--zb-space-sm);
+  height: 44px;
+  padding: 0 var(--zb-space-sm);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  border-radius: var(--zb-radius-sm);
+}
+.user-menu-trigger:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.user-menu-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.2;
+}
+.user-menu-summary .u-name {
+  font-size: 15px; // portal .org-user h3
+  font-weight: 600;
+  color: #fff;
+  line-height: 1;
+}
+.user-menu-summary .u-org {
+  font-size: var(--zb-font-size-xs);
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Panel — portal: #424242, 5px radius, 325px, subtle shadow.
+.user-menu-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 325px;
+  background: var(--zb-menu-bg);
+  color: var(--zb-text);
+  border-radius: var(--zb-radius-md);
+  box-shadow: 1px 1px 8px 2px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  // overflow is intentionally NOT clipped: the org switcher's absolute dropdown
+  // must be able to float past the panel's bottom edge. A short, fixed menu, so
+  // no internal scroll is needed.
+  overflow: visible;
+  padding: var(--zb-space-sm) 0;
+}
+
+// Panel header — portal .main-org-user: 64px avatar + name/email.
+.user-menu-head {
+  display: flex;
+  align-items: center;
+  gap: var(--zb-space-sm);
+  padding: var(--zb-space-xs) var(--zb-space-md);
+}
+.user-menu-head .u-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.user-menu-head .u-name {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+}
+.user-menu-head .u-email {
+  font-size: 12px;
+  line-height: 1;
+  color: var(--zb-secondary-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-menu hr {
+  border: none;
+  border-top: 1px solid var(--zb-menu-divider);
+  margin: var(--zb-space-sm) 0;
+}
+
+.user-menu-org {
+  padding: 0 var(--zb-space-md) var(--zb-space-xs);
+}
+.user-menu-org label {
+  display: block;
+  font-size: var(--zb-font-size-xs);
+  color: var(--zb-secondary-text);
+  margin-bottom: var(--zb-space-xs);
+}
+
+// Custom org dropdown — expands downward as an absolute overlay (no native
+// <select>). The list is positioned absolutely so opening it floats over the
+// content below rather than pushing the user-menu panel taller.
+.org-switch {
+  position: relative;
+}
+.org-switch-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--zb-space-xs);
+  width: 100%;
+  background: var(--zb-menu-input-bg);
+  color: var(--zb-text);
+  border: 1px solid var(--zb-divider);
+  border-radius: var(--zb-radius-sm);
+  padding: 8px 10px;
+  font: inherit;
+  font-size: var(--zb-font-size-sm);
+  cursor: pointer;
+}
+.org-switch-trigger .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--zb-secondary-text);
+}
+.org-switch-list {
+  position: absolute;
+  top: calc(100% + var(--zb-space-xs));
+  left: 0;
+  right: 0;
+  z-index: 10;
+  list-style: none;
+  margin: 0;
+  padding: var(--zb-space-xs) 0;
+  max-height: 240px;
+  overflow-y: auto;
+  background: var(--zb-menu-input-bg);
+  border: 1px solid var(--zb-divider);
+  border-radius: var(--zb-radius-sm);
+  box-shadow: 1px 1px 8px 2px rgba(0, 0, 0, 0.4);
+}
+.org-switch-item {
+  padding: 8px 10px;
+  font-size: var(--zb-font-size-sm);
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.org-switch-item:hover {
+  background: var(--zb-menu-hover);
+}
+.org-switch-item.selected {
+  color: var(--zb-primary);
+  font-weight: 600;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Menu items — portal: 36px tall, icon + 14px label, full-row hover.
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 36px;
+  padding: 0 var(--zb-space-md);
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--zb-text);
+  font: inherit;
+  font-size: var(--zb-font-size-sm); // 14px, per source .mat-mdc-menu-item-text
+  text-decoration: none;
+}
+.menu-item:hover {
+  background: var(--zb-menu-hover);
+  text-decoration: none;
+}
+.menu-item .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--zb-secondary-text);
+  flex-shrink: 0;
+}
+.menu-item .menu-item-label {
+  flex-grow: 1;
+}
+// Theme toggle switch icon (portal toggle_on/off)
+.menu-item .theme-switch {
+  font-size: 26px;
+  color: var(--zb-primary);
+}
+
+// Avatar sizes (shared with header)
+.avatar-lg {
+  width: 64px; // portal .main-org-user avatar
+  height: 64px;
+  font-size: var(--zb-font-size-lg);
+  flex-shrink: 0;
+}
+
+// Modal (Create API Key)
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+  z-index: 200;
+}
+.modal {
+  width: min(520px, 92vw);
+  background: var(--zb-background-card);
+  border: 1px solid var(--zb-divider);
+  border-radius: var(--zb-radius-md);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  padding: var(--zb-space-lg);
+}
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--zb-space-md);
+}
+.modal-head h2 {
+  margin: 0;
+}
+.modal-close {
+  background: transparent;
+  border: none;
+  color: var(--zb-secondary-text);
+  font-size: 22px;
+  cursor: pointer;
+  line-height: 1;
+}
+.field-row {
+  display: flex;
+  gap: var(--zb-space-md);
+}
+.field-row .field {
+  flex: 1;
+  min-width: 0;
+}
+.copy-field {
+  display: flex;
+  align-items: stretch;
+  gap: var(--zb-space-xs);
+}
+.copy-field input {
+  flex: 1;
+  min-width: 0;
+}
+.copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  background: var(--zb-background-input);
+  color: var(--zb-secondary-text);
+  border: 1px solid var(--zb-divider);
+  border-radius: var(--zb-radius-sm);
+  cursor: pointer;
+}
+.copy-btn:hover {
+  color: var(--zb-text);
+  border-color: var(--zb-primary);
+}
+.copy-btn .material-symbols-outlined {
+  font-size: 20px;
+}
+.copied {
+  font-size: var(--zb-font-size-xs);
+  color: var(--zb-status-success);
+}

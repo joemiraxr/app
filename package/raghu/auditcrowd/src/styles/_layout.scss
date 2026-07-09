@@ -1,0 +1,57 @@
+// App shell layout + the auth gate.
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--zb-space-lg) var(--zb-space-md);
+}
+
+// Auth gate (pre-session screen)
+.gate {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.gate-card {
+  text-align: center;
+  color: var(--zb-secondary-text);
+}
+.gate-hint {
+  max-width: 420px;
+  font-size: var(--zb-font-size-sm);
+}
+.spinner {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto var(--zb-space-md);
+  border: 3px solid var(--zb-divider);
+  border-top-color: var(--zb-primary);
+  border-radius: 50%;
+  animation: zb-spin 0.9s linear infinite;
+}
+@keyframes zb-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.state {
+  color: var(--zb-secondary-text);
+  padding: var(--zb-space-md) 0;
+}
+.error {
+  color: var(--zb-status-error);
+}
+.callout {
+  background: var(--zb-background-elevated);
+  border: 1px solid var(--zb-divider);
+  border-left: 3px solid var(--zb-primary);
+  border-radius: var(--zb-radius-sm);
+  padding: var(--zb-space-sm) var(--zb-space-md);
+  margin: var(--zb-space-md) 0;
+}
+.secret {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  word-break: break-all;
+  color: var(--zb-status-success);
+}

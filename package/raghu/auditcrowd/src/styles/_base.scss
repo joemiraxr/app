@@ -1,0 +1,74 @@
+// Reset + global typography.
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--zb-background);
+  color: var(--zb-text);
+  font-family: var(--zb-font-body);
+  font-size: var(--zb-font-size-md); // 16px — the platform's base default
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--zb-font-body);
+  color: var(--zb-text);
+  font-weight: var(--zb-weight-heading); // 400, like the portal
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0 0 var(--zb-space-xs);
+}
+h2 {
+  font-size: 24px; // portal section headings
+}
+h3 {
+  font-size: var(--zb-font-size-lg);
+}
+
+a {
+  color: var(--zb-primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: var(--zb-background-input);
+  color: var(--zb-primary-300);
+  padding: 0.1em 0.4em;
+  border-radius: var(--zb-radius-sm);
+  font-size: 0.9em;
+}
+
+.subtitle {
+  color: var(--zb-secondary-text);
+  margin-top: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

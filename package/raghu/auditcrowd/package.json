@@ -1,0 +1,42 @@
+{
+  "name": "auditcrowd",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AuditCrowd — verifiable audit marketplace app on the ZeroBias platform (v2 client).",
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "preview": "npx serve dist",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@zerobias-com/dana-sdk": "^2.0.4",
+    "@zerobias-com/portal-sdk": "^2.0.2",
+    "@zerobias-com/zerobias-client": "^2.0.5",
+    "@zerobias-org/types-core-js": "^2.0.3",
+    "axios": "^1.16.0",
+    "material-symbols": "^0.31.9",
+    "next": "^16.2.10",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^16.2.10",
+    "sass": "^1.101.0",
+    "typescript": "^5",
+    "vitest": "^3.2.7"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  }
+}

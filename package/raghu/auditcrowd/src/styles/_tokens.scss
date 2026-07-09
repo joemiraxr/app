@@ -1,0 +1,91 @@
+// Design tokens — mirrors the ZeroBias portal's `--zb-*` variable system so a
+// Phase 2 light/dark switch is a values-only swap (no markup/selector changes).
+//
+// Phase 1 ships DARK values only, matching the live portal (ci.zerobias.com).
+// Phase 2: add a `:root[data-theme="light"]` block overriding these same names.
+
+:root {
+  // Brand
+  --zb-primary: #03aff0;
+  --zb-primary-300: #20b7f8;
+  --zb-primary-100: #c6e7ff;
+  --zb-primary-contrast: #ffffff;
+  --zb-primary-rgb: 3, 175, 240;
+
+  // Surfaces (dark) — portal: body #303030, cards/surfaces LIGHTER (#424242)
+  --zb-toolbar-bg: #000000;
+  --zb-background: #303030;         // app body — portal shell body is rgb(48,48,48)
+  --zb-background-card: #424242;    // panels/cards/menus — portal dark surface
+  --zb-background-elevated: #4a4a4a;
+  --zb-background-input: #2b2b2b;   // inputs slightly darker than card
+
+  // Text
+  --zb-text: #ffffff;
+  --zb-secondary-text: #9aa0a6;
+  --zb-text-on-primary: #ffffff;
+
+  // Lines / states
+  --zb-divider: rgba(255, 255, 255, 0.12);
+  --zb-hover-overlay: rgba(255, 255, 255, 0.06);
+  --zb-table-row-hover: rgba(3, 175, 240, 0.08);
+  --zb-focus-ring: rgba(3, 175, 240, 0.5);
+
+  // Menu / dropdown — portal popover uses the card surface (#424242 in dark)
+  --zb-menu-bg: var(--zb-background-card);
+  --zb-menu-divider: var(--zb-divider);
+  --zb-menu-hover: var(--zb-hover-overlay);
+  --zb-menu-input-bg: var(--zb-background-input);
+
+  // Status (from portal --zb-task-status-* / severity)
+  --zb-status-success: #1f9e6a;    // done / published
+  --zb-status-info: #2a6fd6;       // in-progress / draft
+  --zb-status-neutral: #6b778c;    // backlog
+  --zb-status-warning: #ffb300;
+  --zb-status-error: #cc0000;
+  --zb-status-purple: #6554c0;     // "Project" parent chip
+  --zb-status-blue: #2a6fd6;       // "Boundary" parent chip
+  --zb-status-orange: #d98a00;     // "Organization" parent chip
+
+  // Typography — the portal is all Roboto; weight carries the hierarchy.
+  --zb-font-body: var(--font-roboto), Roboto, system-ui, sans-serif;
+  --zb-font-brand: var(--zb-font-body);
+  --zb-weight-heading: 400; // portal headings are regular-weight Roboto
+  --zb-weight-brand: 900; // portal app-title is Roboto 900
+  --zb-font-size-xs: 12px;
+  --zb-font-size-sm: 14px;         // portal base
+  --zb-font-size-md: 16px;
+  --zb-font-size-lg: 18px;
+  --zb-font-size-xl: 20px;
+
+  // Spacing / radius (portal scale)
+  --zb-space-xs: 4px;
+  --zb-space-sm: 8px;
+  --zb-space-md: 16px;
+  --zb-space-lg: 32px;
+  --zb-radius-sm: 4px;
+  --zb-radius-md: 5px;
+  --zb-radius-pill: 50px;
+
+  // Elevation
+  --zb-card-shadow: 8px 8px 16px -6px rgba(0, 0, 0, 0.35);
+  --zb-card-shadow-hover: 8px 8px 16px -4px rgba(0, 0, 0, 0.55);
+
+  color-scheme: dark;
+}
+
+// First-cut LIGHT theme (values from the portal's --mat-sys light tokens).
+// The toolbar stays black in both, like the portal. Toggled from the user menu.
+:root[data-theme="light"] {
+  --zb-background: #fafafa;
+  --zb-background-card: #ffffff;
+  --zb-background-elevated: #ffffff;
+  --zb-background-input: #ffffff;
+  --zb-text: #111111;
+  --zb-secondary-text: #757575;
+  --zb-divider: #e3e3e3;
+  --zb-hover-overlay: rgba(0, 0, 0, 0.04);
+  --zb-table-row-hover: rgb(237, 248, 254);
+  --zb-card-shadow: 8px 8px 16px -6px rgba(0, 0, 0, 0.1);
+  --zb-card-shadow-hover: 8px 8px 16px -4px rgba(0, 0, 0, 0.3);
+  color-scheme: light;
+}

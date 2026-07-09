@@ -1,0 +1,116 @@
+// Top toolbar — mirrors the portal's black `portal-toolbar` (64px) with the
+// signature cyan gradient accent strip and cyan active-tab underline.
+
+.app-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--zb-space-md);
+  height: 64px;
+  padding: 0 var(--zb-space-md);
+  background: var(--zb-toolbar-bg);
+  color: #fff;
+}
+
+// The 4px cyan -> dark gradient strip under the toolbar.
+.app-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--zb-primary) 25%, #232323 75%);
+}
+
+.app-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--zb-space-lg);
+  min-width: 0;
+}
+.app-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--zb-space-md);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--zb-space-sm);
+  font-family: var(--zb-font-brand);
+  font-weight: 700; // echoes the portal's heavy Roboto app-title
+  font-size: var(--zb-font-size-md);
+  color: #fff;
+}
+.brand:hover {
+  text-decoration: none;
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--zb-radius-sm);
+  background: rgba(var(--zb-primary-rgb), 0.15);
+  color: var(--zb-primary);
+  font-weight: 700;
+}
+.brand span {
+  color: var(--zb-secondary-text);
+  font-weight: 500;
+}
+
+// Tab-style nav (cyan active underline, like the portal's Portfolio/Engagements).
+.app-nav {
+  display: flex;
+  gap: var(--zb-space-md);
+  height: 100%;
+}
+.app-nav a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--zb-space-md); // portal tabs use 0 24px; 16px reads well in a top bar
+  color: var(--zb-secondary-text);
+  font-size: var(--zb-font-size-md); // 16px, like the portal Portfolio/Engagements tabs
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+}
+.app-nav a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.app-nav a.active {
+  color: var(--zb-primary);
+  border-bottom-color: var(--zb-primary);
+}
+
+.user-name {
+  font-size: var(--zb-font-size-sm);
+  color: #fff;
+  white-space: nowrap;
+}
+
+// Small round initials avatar (cyan), like the portal's "CS" chip.
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--zb-primary);
+  color: var(--zb-primary-contrast);
+  font-weight: 600;
+  font-size: var(--zb-font-size-xs);
+}
+
+.org-switcher select {
+  width: auto; // size to the selected org name so it isn't clipped
+  min-width: 200px;
+  max-width: 360px;
+  padding-right: 28px; // room for the native dropdown arrow
+  text-overflow: ellipsis;
+}

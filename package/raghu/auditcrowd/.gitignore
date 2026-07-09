@@ -1,0 +1,21 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next
+/dist
+/out
+next-env.d.ts
+
+# env — commit .env.example and .env.production (no secrets); never commit local envs
+.env
+.env.local
+.env.development
+.env*.local
+
+# misc
+.DS_Store
+*.tsbuildinfo
+npm-debug.log*
+# next-agents-md
+.next-docs/
